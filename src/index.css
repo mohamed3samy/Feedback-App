@@ -13,6 +13,17 @@ body {
 	line-height: 1.6;
 }
 
+::-webkit-scrollbar {
+	width: 0.8rem;
+}
+::-webkit-scrollbar-track {
+	background: #f4f4f4;
+}
+::-webkit-scrollbar-thumb {
+	background: #ff6a95;
+	border-radius: 1rem;
+}
+
 ul {
 	list-style: none;
 }
