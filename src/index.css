@@ -191,15 +191,11 @@ input:focus {
 	color: rebeccapurple;
 }
 
-/* FIX: Remove position: absolute to keep about icon at the bottom of the
- * document */
 .about-link {
 	display: flex;
 	justify-content: flex-end;
 }
 
-/* FIX: Remove position: absolute to keep about icon at the bottom of the
- * document */
 .about-link a {
 	color: #fff;
 	cursor: pointer;
@@ -232,5 +228,30 @@ input:focus {
 
 	.input-group input {
 		width: 80%;
+	}
+}
+
+.loadingSpinnerContainer {
+	position: fixed;
+	inset: 0;
+	background-color: rgba(0, 0, 0, 0.6);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.loadingSpinner {
+	width: 64px;
+	height: 64px;
+	border: 8px solid;
+	border-color: #ff6a95 transparent #ff6a95 transparent;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+}
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
 	}
 }

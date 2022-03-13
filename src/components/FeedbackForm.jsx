@@ -1,13 +1,26 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+import FeedbackContext from "../context/FeedbackContext";
 import Card from "./UI/Card";
 import Button from "./UI/Button";
 import RatingSelect from "./RatingSelect";
 
-const FeedbackForm = ({ handleAdd }) => {
+const FeedbackForm = () => {
 	const [text, setText] = useState("");
 	const [rating, setRating] = useState(10);
 	const [btnDisabled, setBtnDisabled] = useState(true);
 	const [message, setMessage] = useState("");
+
+	const { addFeedback, feedbackEdit, updateFeedback } =
+		useContext(FeedbackContext);
+
+	// Set item to be updated
+	useEffect(() => {
+		if (feedbackEdit.edit === true) {
+			setBtnDisabled(false);
+			setText(feedbackEdit.item.text);
+			setRating(feedbackEdit.item.rating);
+		}
+	}, [feedbackEdit]);
 
 	const handleTextChange = (e) => {
 		// Form Validation
@@ -34,7 +47,12 @@ const FeedbackForm = ({ handleAdd }) => {
 				rating,
 			};
 
-			handleAdd(newFeedback);
+			if (feedbackEdit.edit === true) {
+				updateFeedback(feedbackEdit.item.id, newFeedback);
+			} else {
+				addFeedback(newFeedback);
+			}
+
 			setText("");
 		}
 	};
